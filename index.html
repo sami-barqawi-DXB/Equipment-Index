@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TAIT | Equipment Index</title>
-<meta name="description" content="Internal equipment selector for TAIT and affiliate automation products: winches, chain hoists, stage lifts, performer flying, tracking and control.">
+<meta name="description" content="Internal equipment selector for TAIT and Kinesys automation products: winches, chain hoists, drives, control, load cells, tracking and more.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="TAIT | Equipment Index">
-<meta property="og:description" content="Find the right winch, hoist, lift, tracking or control system by capacity, speed, rating and duty.">
+<meta property="og:description" content="Find the right Kinesys or TAIT Classic product by brand, capacity, speed, rating and duty.">
 <link rel="manifest" href="site.webmanifest">
 <style>
 :root{
@@ -48,7 +48,7 @@ input,select{font:inherit;color:inherit}
 .context{margin-top:26px;padding-top:20px;border-top:1px solid var(--line);
   display:flex;flex-wrap:wrap;gap:18px;align-items:flex-start;justify-content:space-between}
 .context h2{margin:0;font-size:20px;font-weight:700}
-.context p{margin:4px 0 0;color:var(--muted);font-size:13px;max-width:380px}
+.context p{margin:4px 0 0;color:var(--muted);font-size:13px;max-width:420px}
 .actions{display:flex;flex-wrap:wrap;gap:10px}
 .btn{padding:11px 18px;border-radius:999px;background:#fff;border:1px solid var(--line);font-weight:600;font-size:13px;
   transition:background .2s var(--ease)}
@@ -79,10 +79,14 @@ input,select{font:inherit;color:inherit}
 .results{margin-top:22px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 @media (max-width:820px){ .results{grid-template-columns:1fr} }
 .card{background:#fff;border-radius:var(--radius-xl);box-shadow:var(--shadow-soft);padding:22px;
-  display:flex;flex-direction:column;gap:14px;transition:transform .25s var(--ease), box-shadow .25s var(--ease)}
+  display:flex;flex-direction:column;gap:14px;transition:transform .25s var(--ease), box-shadow .25s var(--ease);position:relative}
 .card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
 .card .cat{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-.card h3{margin:0;font-size:24px;line-height:1.05;font-weight:900;letter-spacing:-.02em}
+.card .brand-pill{position:absolute;top:18px;right:20px;font-size:10px;font-weight:800;padding:4px 10px;border-radius:999px;letter-spacing:.06em;text-transform:uppercase}
+.brand-pill.kinesys{background:#DBFF00;color:#000}
+.brand-pill.tait{background:#000;color:#fff}
+.brand-pill.generic{background:var(--surface-muted);color:var(--muted)}
+.card h3{margin:0;font-size:24px;line-height:1.05;font-weight:900;letter-spacing:-.02em;padding-right:90px}
 .card .blurb{color:var(--ink-soft);font-size:13.5px;margin:-4px 0 2px}
 .specs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .spec{background:var(--surface-muted);border-radius:var(--radius-sm);padding:10px 12px}
@@ -92,6 +96,7 @@ input,select{font:inherit;color:inherit}
 .tag{font-size:11px;font-weight:700;padding:5px 10px;border-radius:999px;background:#0A0A0B;color:#fff}
 .cardfoot{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
 .linklike{font-weight:700;font-size:13px;text-decoration:underline;text-underline-offset:3px}
+.verify-flag{font-size:10px;font-weight:700;color:var(--red);letter-spacing:.08em;text-transform:uppercase;margin-top:4px}
 .drawer-bg{position:fixed;inset:0;background:rgba(0,0,0,.32);opacity:0;pointer-events:none;transition:opacity .3s var(--ease);z-index:50}
 .drawer-bg.open{opacity:1;pointer-events:auto}
 .drawer{position:fixed;top:0;right:0;height:100vh;width:min(560px,100%);background:#fff;
@@ -107,13 +112,14 @@ input,select{font:inherit;color:inherit}
 .specs-table td:first-child{color:var(--muted);width:42%}
 .specs-table td:last-child{font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
 .closebtn{width:36px;height:36px;border-radius:50%;background:var(--surface-muted);display:flex;align-items:center;justify-content:center;font-size:18px}
+.source-note{margin-top:14px;padding:10px 14px;background:var(--surface-muted);border-radius:var(--radius-sm);font-size:12px;color:var(--muted)}
 .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(20px);
   background:#0A0A0B;color:#fff;padding:12px 20px;border-radius:999px;opacity:0;
   transition:all .3s var(--ease);z-index:80;font-size:13px;font-weight:600}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 body.present{background:#000;color:#fff}
 body.present .panel,body.present .card{background:#0F0F11;color:#fff;box-shadow:none}
-body.present .spec{background:#1a1a1d}
+body.present .spec, body.present .source-note{background:#1a1a1d}
 body.present .navbtn.active{background:#1a1a1d}
 @media print{
   body{background:#fff}
@@ -129,7 +135,7 @@ body.present .navbtn.active{background:#1a1a1d}
     <div class="logo">TAIT</div>
     <div>
       <h1>Equipment Index</h1>
-      <p>Internal product selector for TAIT and affiliate automation systems</p>
+      <p>Internal product selector for Kinesys and TAIT Classic automation systems</p>
     </div>
   </div>
 
@@ -141,7 +147,7 @@ body.present .navbtn.active{background:#1a1a1d}
   <div class="context">
     <div>
       <h2 id="contextTitle">All equipment</h2>
-      <p id="contextSub">Filter by rating, capacity, speed and duty to shortlist the right unit.</p>
+      <p id="contextSub">Filter by brand, rating, capacity, speed and duty.</p>
     </div>
     <div class="actions">
       <button class="btn" onclick="copySummary()">Copy shortlist</button>
@@ -155,7 +161,7 @@ body.present .navbtn.active{background:#1a1a1d}
     <div class="filters">
       <div class="field col-6">
         <label>Search</label>
-        <input id="q" type="text" placeholder="e.g. Apex 1250, low-profile, performer">
+        <input id="q" type="text" placeholder="e.g. Apex 1250, BGV-C1, Vector">
       </div>
       <div class="field col-3">
         <label>Sort by</label>
@@ -172,6 +178,10 @@ body.present .navbtn.active{background:#1a1a1d}
           <option value="all">All products</option>
           <option value="shortlist">Shortlist only</option>
         </select>
+      </div>
+      <div class="field col-12">
+        <label>Brand</label>
+        <div class="chips" id="brandChips"></div>
       </div>
       <div class="field col-12">
         <label>Safety / duty rating</label>
@@ -223,130 +233,262 @@ body.present .navbtn.active{background:#1a1a1d}
 
 <div class="toast" id="toast"></div>
 <script>
-/* =========================================================
-   EDIT YOUR CATALOGUE BELOW.
-   Each PRODUCT entry shows up as a card. Add/remove freely.
-   Required fields: id, cat, name, capacity (kg), speed (m/min),
-   voltage, weight (kg), rating[], apps[], blurb, detail.
-   ========================================================= */
+/* ===========================================================================
+   EQUIPMENT INDEX  -  TAIT / Kinesys product catalogue
+
+   Kinesys entries: spec values verified against the official Kinesys product
+   pages on kinesys.com (the unified TAIT Group product portal). Sources cited
+   on each entry as 'source' so you can re-verify.
+
+   TAIT Classic entries: product names verified (referenced on kinesys.com as
+   compatible automation: Navigator, Acrobat). Detailed spec values for the
+   TAIT Classic line could not be fetched in this build (taittowers.com was
+   not accessible from this environment). Entries are marked verify:false and
+   show a 'VERIFY SPECS' flag in the UI. Update them from your internal
+   TAIT spec sheets before relying on the values.
+   ========================================================================= */
 
 const CATEGORIES = [
-  {id:'all',       label:'All equipment',     meta:''},
-  {id:'winch',     label:'Winches',           meta:''},
-  {id:'chain',     label:'Chain hoists',      meta:''},
-  {id:'stage',     label:'Stage lifts',       meta:''},
-  {id:'performer', label:'Performer flying',  meta:''},
-  {id:'tracking',  label:'Tracking / trolleys', meta:''},
-  {id:'turntable', label:'Turntables / revolves', meta:''},
-  {id:'control',   label:'Control systems',   meta:''},
-  {id:'shortlist', label:'My shortlist',      meta:''}
+  {id:'all',       label:'All equipment',         meta:''},
+  {id:'kinesys',   label:'Kinesys',               meta:''},
+  {id:'tait',      label:'TAIT Classic',          meta:''},
+  {id:'chain',     label:'Chain hoists',          meta:''},
+  {id:'drive',     label:'Drives & controllers',  meta:''},
+  {id:'control',   label:'Control software',      meta:''},
+  {id:'tracking',  label:'Tracking / DST',        meta:''},
+  {id:'loadcell',  label:'Load cells',            meta:''},
+  {id:'shortlist', label:'My shortlist',          meta:''}
 ];
 
-const RATINGS = ['BGV-D8','BGV-D8+','BGV-C1','SIL3','Performer-rated'];
-const APPS    = ['Touring','Themed','Broadcast','Permanent install','Outdoor','Low-profile','Variable-speed','3D motion'];
+const BRANDS  = ['Kinesys','TAIT Classic'];
+const RATINGS = ['BGV-D8','BGV-D8+','BGV-C1','SIL2','SIL3','DGUV 17','EN 17206','Performer-rated'];
+const APPS    = ['Touring','Themed','Broadcast','Permanent install','Variable-speed','Fixed-speed','Movement over people','Low-noise','3D motion','Load monitoring'];
 
-/* Illustrative seed data. Replace with verified spec sheets. */
+/* ============================================================
+   KINESYS  -  Verified from kinesys.com product pages (2026)
+   ============================================================ */
 const PRODUCTS = [
-  {id:'apex-500', cat:'chain', name:'Apex Hoist 500',
-    blurb:'Compact, low-noise chain hoist for fast touring rigs.',
-    capacity:500, speed:8, voltage:'400V 3ph', weight:32,
-    rating:['BGV-D8'], apps:['Touring','Broadcast'],
-    detail:'Single-fall electric chain hoist suited to repetitive touring builds. Brake on motor and load side. Slip clutch fitted.'},
-  {id:'apex-1000', cat:'chain', name:'Apex Hoist 1000',
-    blurb:'Industry-standard 1 t touring hoist.',
-    capacity:1000, speed:6, voltage:'400V 3ph', weight:48,
-    rating:['BGV-D8'], apps:['Touring','Themed','Permanent install'],
-    detail:'Workhorse 1000 kg D8 hoist. Double-brake variant available for D8+ scenarios.'},
-  {id:'apex-1250-c1', cat:'chain', name:'Apex Hoist 1250 C1',
-    blurb:'C1-rated 1.25 t hoist for performance flying and SOTA loads.',
-    capacity:1250, speed:7, voltage:'400V 3ph', weight:58,
-    rating:['BGV-C1','BGV-D8+'], apps:['Touring','Broadcast','3D motion'],
-    detail:'Dual independent brakes, redundant load path, encoder feedback. Fully C1-compliant for loads over performers and audience. Pairs with Navigator/Acrobat control.'},
-  {id:'apex-2000', cat:'chain', name:'Apex Hoist 2000 D8+',
-    blurb:'Heavy lift 2 t D8+ hoist for permanent rigs.',
-    capacity:2000, speed:4, voltage:'400V 3ph', weight:78,
-    rating:['BGV-D8+'], apps:['Permanent install','Themed'],
-    detail:'D8+ secondary brake, rated 50,000-cycle duty. Integrated load cell ready.'},
 
-  {id:'nomad-800', cat:'winch', name:'Nomad Winch 800',
-    blurb:'Touring variable-speed winch.',
-    capacity:800, speed:60, voltage:'400V 3ph', weight:240,
-    rating:['BGV-D8'], apps:['Touring','Variable-speed'],
-    detail:'Servo-driven drum winch up to 60 m/min, absolute encoder, dual brakes. Deck or truss mount.'},
-  {id:'nomad-1500-c1', cat:'winch', name:'Nomad Winch 1500 C1',
-    blurb:'C1-rated variable-speed winch for performer and scenic flying.',
-    capacity:1500, speed:90, voltage:'400V 3ph', weight:380,
-    rating:['BGV-C1'], apps:['Performer-rated','Variable-speed','3D motion'],
-    detail:'Triple-redundant braking, dual encoders, certified for loads above performers. Pairs with Navigator/Acrobat.'},
-  {id:'pds-3000', cat:'winch', name:'PDS Winch 3000',
-    blurb:'Permanent-install heavy scenic winch.',
-    capacity:3000, speed:30, voltage:'400V 3ph', weight:620,
-    rating:['BGV-D8+','SIL3'], apps:['Permanent install','Themed'],
-    detail:'Themed venue scenic winch with SIL3 safety controller. Used for large flying scenery in arenas and theme parks.'},
-  {id:'compactfly-300', cat:'winch', name:'CompactFly 300',
-    blurb:'Low-profile mini winch for tight scenic moves.',
-    capacity:300, speed:120, voltage:'230V 1ph', weight:48,
-    rating:['BGV-D8'], apps:['Low-profile','Variable-speed','Themed'],
-    detail:'High-speed micro winch for set element reveals. Configurable drum and fleet angle limits.'},
+  {id:'kin-apex-500', brand:'Kinesys', cat:'chain',
+    name:'Kinesys Apex Hoist 500',
+    blurb:'Variable speed electric chain hoist, 500 kg, suitable for movement over people.',
+    capacity:500, speed:30, voltage:'400V 3ph (200/400V variants)', weight:null,
+    rating:['BGV-C1','DGUV 17','EN 17206'],
+    apps:['Touring','Themed','Movement over people','Variable-speed','Low-noise'],
+    detail:'500 kg / 1200 lb capacity, max speed 500 mm/s (30 m/min, 100 ft/min). Completely silent dual brakes with hover capability. Intelligent Duty Cycle Management, real-time temperature monitoring, full usage logging. Compatible with all Kinesys and TAIT control platforms.',
+    source:'kinesys.com/product/kinesys-apex-hoist/',
+    verify:true},
 
-  {id:'stagelift-5t', cat:'stage', name:'Stage Lift 5T',
-    blurb:'Modular orchestra / stage lift platform.',
-    capacity:5000, speed:6, voltage:'400V 3ph', weight:1800,
-    rating:['BGV-D8+','SIL3'], apps:['Permanent install','Themed'],
-    detail:'Scissor / spiralift driven stage lift. Up to 5 t distributed load. Guard rails, e-stop loop, dual-channel safety.'},
-  {id:'stagelift-10t', cat:'stage', name:'Stage Lift 10T',
-    blurb:'Heavy-duty multi-purpose stage lift.',
-    capacity:10000, speed:4, voltage:'400V 3ph', weight:3200,
-    rating:['BGV-D8+','SIL3'], apps:['Permanent install','Themed'],
-    detail:'Large platform lift for orchestra pit / sub-stage applications. Modular deck panels.'},
+  {id:'kin-apex-500-servo', brand:'Kinesys', cat:'chain',
+    name:'Kinesys Apex Hoist 500 Servo',
+    blurb:'Servo variant of the Apex 500 with integrated SIL3 load cell.',
+    capacity:500, speed:30, voltage:'400V 3ph', weight:null,
+    rating:['BGV-C1','DGUV 17','EN 17206','SIL3'],
+    apps:['Touring','Themed','Movement over people','Variable-speed','3D motion','Load monitoring','Low-noise'],
+    detail:'Variable speed electric chain hoist designed to meet DGUV 17 (BGV C1) and EN 17206. Integrated SIL3 load cell, dual quiet brakes with brake monitoring, SSI absolute encoder. Powered by Kinesys Apex Drive v2. Operated by Kinesys Vector or TAIT Navigator.',
+    source:'kinesys.com/product/apexhoist-servo-500/',
+    verify:true},
 
-  {id:'aerial-150', cat:'performer', name:'Aerial Flight 150 C1',
-    blurb:'Performer flying winch, single point.',
-    capacity:150, speed:90, voltage:'400V 3ph', weight:120,
-    rating:['BGV-C1','Performer-rated'], apps:['3D motion','Broadcast'],
-    detail:'Compact 150 kg performer flying winch. Twin-encoder, redundant brake, certified for human-loaded flight under BGV-C1.'},
-  {id:'aerial-300', cat:'performer', name:'Aerial Flight 300 C1',
-    blurb:'Dual-performer / duet flying winch.',
-    capacity:300, speed:75, voltage:'400V 3ph', weight:175,
-    rating:['BGV-C1','Performer-rated'], apps:['3D motion']},
+  {id:'kin-apex-1250', brand:'Kinesys', cat:'chain',
+    name:'Kinesys Apex Hoist 1250',
+    blurb:'1.25 t variable speed hoist, C1-rated, for performance flying and SOTA loads.',
+    capacity:1250, speed:12, voltage:'400V 3ph', weight:null,
+    rating:['BGV-C1','DGUV 17','EN 17206'],
+    apps:['Touring','Themed','Permanent install','Movement over people','Variable-speed','Low-noise'],
+    detail:'1250 kg / 2750 lb capacity, max speed 200 mm/s (12 m/min, 40 ft/min). Silent dual brakes, hover capability. Intelligent Duty Cycle Management. Compatible with all Kinesys and TAIT control.',
+    source:'kinesys.com/product/kinesys-apex-hoist/',
+    verify:true},
 
-  {id:'track-500', cat:'tracking', name:'Track Trolley 500',
-    blurb:'Single-axis horizontal tracking trolley.',
-    capacity:500, speed:60, voltage:'400V 3ph', weight:95,
-    rating:['BGV-D8'], apps:['Touring','Themed','Variable-speed'],
-    detail:'Self-propelled trolley running on alloy track. Onboard drive, festoon cable management.'},
-  {id:'track-1000-c1', cat:'tracking', name:'Track Trolley 1000 C1',
-    blurb:'Performer-rated tracking trolley.',
-    capacity:1000, speed:45, voltage:'400V 3ph', weight:145,
-    rating:['BGV-C1'], apps:['Performer-rated','3D motion','Themed'],
-    detail:'C1-rated horizontal tracking unit, redundant motor and brakes, e-stop loop integrated.'},
+  {id:'kin-apex-drive-v2', brand:'Kinesys', cat:'drive',
+    name:'Kinesys Apex Drive v2',
+    blurb:'SIL3-rated variable speed drive for the Apex hoist range.',
+    capacity:0, speed:0, voltage:'400V 3ph (Ceeform)', weight:null,
+    rating:['BGV-C1','DGUV 17','EN 17206','SIL3'],
+    apps:['Touring','Themed','Permanent install','Variable-speed','3D motion'],
+    detail:'State-of-the-art variable speed chain hoist drive. Compatible with all Kinesys Apex hoists. Touchscreen display, manual front panel controls, real-time data logging. True zero speed (zero-speed load holding with open brakes). SIL3 rated. Ceeform daisy-chain power. Works with Kinesys Vector and TAIT Navigator.',
+    source:'kinesys.com/product/kinesys-apex-drive-v2/',
+    verify:true},
 
-  {id:'revolve-6m', cat:'turntable', name:'Revolve 6m',
-    blurb:'6 m diameter modular turntable.',
-    capacity:4000, speed:8, voltage:'400V 3ph', weight:2100,
-    rating:['BGV-D8'], apps:['Permanent install','Themed','Touring'],
-    detail:'8 rpm max, deck-load 4 t. Modular for touring or fixed install.'},
-  {id:'revolve-12m', cat:'turntable', name:'Revolve 12m SIL3',
-    blurb:'Large permanent venue revolve.',
-    capacity:12000, speed:5, voltage:'400V 3ph', weight:6400,
-    rating:['BGV-D8+','SIL3'], apps:['Permanent install','Themed'],
-    detail:'Themed venue revolve, SIL3 safety, configurable inner/outer rings.'},
+  {id:'kin-elev-hoist-250', brand:'Kinesys', cat:'chain',
+    name:'Kinesys Elevation Hoist 250',
+    blurb:'Variable speed converted Liftket, 250 kg.',
+    capacity:250, speed:24, voltage:'208V / 400V', weight:null,
+    rating:['BGV-D8','BGV-C1'],
+    apps:['Touring','Themed','Variable-speed'],
+    detail:'250 kg Stageket-body chain hoist, double brakes, four-position limit switches, encoder. With Kinesys LibraCELL can reach BGV-C1 conformity. Available in 208V and 400V. 24m height of lift standard. Speed up to 24 m/min depending on configuration.',
+    source:'kinesys.com/product/kinesys-elevation-hoist/',
+    verify:true},
 
-  {id:'navigator', cat:'control', name:'Navigator Automation',
-    blurb:'Cue-based motion control platform.',
-    capacity:0, speed:0, voltage:'-', weight:0,
-    rating:['SIL3'], apps:['Touring','Themed','Permanent install','3D motion'],
-    detail:'Multi-axis cue-based controller. Up to 192 axes per cabinet. Supports BGV-C1 workflows with Acrobat performer module.'},
-  {id:'acrobat', cat:'control', name:'Acrobat Performer Flying',
-    blurb:'Specialist controller for performer flying.',
-    capacity:0, speed:0, voltage:'-', weight:0,
-    rating:['BGV-C1','SIL3','Performer-rated'], apps:['3D motion'],
-    detail:'Dedicated performer flying control with redundant safety processing, force-monitoring, and dead-man operator station.'}
+  {id:'kin-elev-hoist-500', brand:'Kinesys', cat:'chain',
+    name:'Kinesys Elevation Hoist 500',
+    blurb:'Variable speed converted Liftket, 500 kg.',
+    capacity:500, speed:12, voltage:'208V / 400V', weight:null,
+    rating:['BGV-D8','BGV-C1'],
+    apps:['Touring','Themed','Variable-speed'],
+    detail:'500 kg Stageket-body chain hoist, double brakes, four-position limit switches, encoder. Shares mechanical parts with Apex 500. With LibraCELL reaches BGV-C1. 24 m HoL.',
+    source:'kinesys.com/product/kinesys-elevation-hoist/',
+    verify:true},
+
+  {id:'kin-elev-hoist-1000', brand:'Kinesys', cat:'chain',
+    name:'Kinesys Elevation Hoist 1000',
+    blurb:'Variable speed converted Liftket, 1000 kg.',
+    capacity:1000, speed:12, voltage:'208V / 400V', weight:null,
+    rating:['BGV-D8','BGV-C1'],
+    apps:['Touring','Themed','Variable-speed'],
+    detail:'1000 kg Stageket-body chain hoist, double brakes, four-position limit switches, encoder. With LibraCELL reaches BGV-C1.',
+    source:'kinesys.com/product/kinesys-elevation-hoist/',
+    verify:true},
+
+  {id:'kin-elev-drive-v2', brand:'Kinesys', cat:'drive',
+    name:'Kinesys Elevation Drive v2',
+    blurb:'Open-system variable speed drive for Lodestar / Liftket / GIS hoists.',
+    capacity:0, speed:0, voltage:'32A US/EU variants', weight:null,
+    rating:['BGV-D8'],
+    apps:['Touring','Themed','Permanent install','Variable-speed'],
+    detail:'Variable speed drive for converted CM Lodestar, Liftket, GIS chain hoists. 32A daisy-chain power. LED display, intuitive menu, manual control buttons. Ramp start/stop, position and variable speed. Multipin hoist connection (motor, brake, limit switch, encoder). Controlled by Kinesys Vector.',
+    source:'kinesys.com/product/kinesys-elevation-drive-v2/',
+    verify:true},
+
+  {id:'kin-digihoist', brand:'Kinesys', cat:'drive',
+    name:'Kinesys DigiHoist',
+    blurb:'Digital fixed-speed hoist controller, 32A / 63A, SIL2 e-stop.',
+    capacity:0, speed:0, voltage:'32A / 63A 3ph', weight:null,
+    rating:['SIL2'],
+    apps:['Touring','Themed','Permanent install','Fixed-speed','Load monitoring'],
+    detail:'Digital comms hoist controller. Up to 12 units (96 channels) daisy-chained. SIL2 emergency stop. Load cell input, limit monitoring, position feedback, group halt. 32A DigiHoist and 63A DigiHoist PLUS. Connections: Socapex / Harting / P14 / Ceeform.',
+    source:'kinesys.com/product/kinesys-digihoist/',
+    verify:true},
+
+  {id:'kin-libra-cell', brand:'Kinesys', cat:'loadcell',
+    name:'Kinesys Libra Cell',
+    blurb:'Load measuring shackle (Crosby bow pin replacement) with on-board readout.',
+    capacity:4750, speed:0, voltage:'-', weight:null,
+    rating:[],
+    apps:['Load monitoring','Touring','Themed','Permanent install'],
+    detail:'Load-measuring shackle pin, direct replacement for Crosby red pin. Available in 3.25 TE (5/8") and 4.75 TE (3/4") capacities at 5:1 SF (1.62 T / 2.37 T at 10:1 SF). LED readout in kg or lbs with tare. Designed for indoor use (not waterproof).',
+    source:'kinesys.com/product/kinesys-libra-cell/',
+    verify:true},
+
+  {id:'kin-libra-pro', brand:'Kinesys', cat:'loadcell',
+    name:'Kinesys Libra Pro',
+    blurb:'Load cell hub: up to 100 cells, 4x XLR4, 4x relay, Ethernet.',
+    capacity:0, speed:0, voltage:'External PSU', weight:null,
+    rating:[],
+    apps:['Load monitoring','Permanent install','Touring','Themed'],
+    detail:'Four XLR4 inputs supporting up to 100 Libra Cells. Four programmable relay outputs (for under/overload alarms). Ethernet and USB. Connects to Libra Watch on PC, tablet or smartphone. Pairs with Libra WiFi for wireless monitoring.',
+    source:'kinesys.com/product/kinesys-libra-pro/',
+    verify:true},
+
+  {id:'kin-vector-console', brand:'Kinesys', cat:'control',
+    name:'Kinesys Vector Console',
+    blurb:'All-in-one cue-based motion control console with built-in PC and 15.6" touchscreen.',
+    capacity:0, speed:0, voltage:'-', weight:null,
+    rating:[],
+    apps:['Touring','Themed','Permanent install','3D motion'],
+    detail:'15.6" backlit capacitive touchscreen, jog wheels, joystick, dedicated start/stop, original Vector keypad, dimmable backlit keyboard + trackpad. RFID login, integrated E-stop and DMH, dedicated media network output, 2x external monitor (HDMI/VGA), 2x USB. Runs full Kinesys Vector software.',
+    source:'kinesys.com/product/vector-console/',
+    verify:true},
+
+  {id:'kin-vector-sw', brand:'Kinesys', cat:'control',
+    name:'Kinesys Vector Software',
+    blurb:'Cue-based automation software with unlimited cues and channels.',
+    capacity:0, speed:0, voltage:'-', weight:null,
+    rating:[],
+    apps:['Touring','Themed','Permanent install','3D motion'],
+    detail:'Cue-based programming software for Kinesys controllers. 4 simultaneous playbacks, advanced cue linking, dead-man\'s handle per channel, group halt, error windowing. Three user-login levels. Free demo (no motion output).',
+    source:'kinesys.com/product/vector-console/',
+    verify:true},
+
+  {id:'kin-mentor-s4', brand:'Kinesys', cat:'control',
+    name:'Kinesys Mentor Safety Series 4',
+    blurb:'SIL3 safety controller over Ethernet, up to 60 devices.',
+    capacity:0, speed:0, voltage:'-', weight:null,
+    rating:['SIL3'],
+    apps:['Touring','Themed','Permanent install','3D motion'],
+    detail:'Series 4 Mentor safety controller. SIL3 over Ethernet, up to 60 safely controlled devices. Compatible E-stops and dead-man\'s handles shared across Mentor range. Latest generation Kinesys safety platform.',
+    source:'kinesys.com/products/ (Mentor Series 4 listing)',
+    verify:true},
+
+  {id:'kin-elev-trolley-dst', brand:'Kinesys', cat:'tracking',
+    name:'Kinesys Elevation Trolley DST',
+    blurb:'Motorised horizontal trolley for Elevation DST track-truss.',
+    capacity:null, speed:null, voltage:'200V / 400V', weight:null,
+    rating:['BGV-D8'],
+    apps:['Themed','Permanent install','Touring','Variable-speed','3D motion'],
+    detail:'Horizontal traverse module for the Elevation DST stacking track-truss system. Onboard control box and Elevation controller. Onboard limit and homing switches. Power/data output for additional Elevation devices. Lead/follow trolleys available for larger screens / props.',
+    source:'kinesys.com/product/kinesys-elevation-trolley-dst/',
+    verify:true},
+
+  {id:'kin-elev-rotator-dst', brand:'Kinesys', cat:'tracking',
+    name:'Kinesys Elevation Rotator DST',
+    blurb:'360-degree rotation module for the DST track-truss.',
+    capacity:null, speed:null, voltage:'200V / 400V', weight:null,
+    rating:['BGV-D8'],
+    apps:['Themed','Permanent install','Variable-speed','3D motion'],
+    detail:'360-degree rotation module for video screens, scenery, props. Combines with Trolley DST for multi-axis motion. Onboard control box and Elevation controller, limit and homing switches.',
+    source:'kinesys.com/product/kinesys-elevation-rotator-dst/',
+    verify:true},
+
+  {id:'kin-elev-truss-dst', brand:'Kinesys', cat:'tracking',
+    name:'Kinesys Elevation Track Truss DST',
+    blurb:'EN AW-6062 T6 aluminium track-truss with integrated toothed belt.',
+    capacity:0, speed:0, voltage:'-', weight:null,
+    rating:[],
+    apps:['Themed','Permanent install','Touring'],
+    detail:'EN AW-6062 T6 aluminium truss with integrated toothed belt track. Straight sections 1 m / 1.5 m / 3 m. 3 m curved sections available. Optional black powder coat. Truss structure manufactured by Area 4. Integrated dolly option for fast load-in/out.',
+    source:'kinesys.com/product/kinesys-elevation-track-truss-dst/',
+    verify:true},
+
+  /* ============================================================
+     TAIT CLASSIC  -  Product names verified (referenced on
+     kinesys.com), but detailed specs need verification from
+     internal TAIT documentation. Flagged verify:false.
+     ============================================================ */
+
+  {id:'tait-navigator', brand:'TAIT Classic', cat:'control',
+    name:'TAIT Navigator',
+    blurb:'TAIT\'s flagship cue-based automation control platform.',
+    capacity:0, speed:0, voltage:'-', weight:null,
+    rating:['SIL3'],
+    apps:['Touring','Themed','Permanent install','3D motion'],
+    detail:'TAIT Navigator multi-axis automation control. Cue-based, scalable to large permanent installations. Compatible with Kinesys Apex Hoist 500/1250/500 Servo and Apex Drive v2 (confirmed by Kinesys product pages). Pairs with Acrobat module for performer flying.',
+    source:'Referenced as compatible control on kinesys.com Apex pages',
+    verify:false},
+
+  {id:'tait-acrobat', brand:'TAIT Classic', cat:'control',
+    name:'TAIT Acrobat',
+    blurb:'Performer flying control module for the Navigator platform.',
+    capacity:0, speed:0, voltage:'-', weight:null,
+    rating:['BGV-C1','SIL3','Performer-rated'],
+    apps:['Touring','Themed','Permanent install','3D motion','Movement over people'],
+    detail:'Specialist performer-flying controller running on top of Navigator. Redundant safety processing, force monitoring, dead-man operator station. Used on large-scale tours and resident shows.',
+    source:'TAIT product line; spec needs internal verification',
+    verify:false},
+
+  {id:'tait-nx-winch', brand:'TAIT Classic', cat:'chain',
+    name:'TAIT NX Winch',
+    blurb:'TAIT scenic / performer winch family (placeholder - verify model and spec).',
+    capacity:null, speed:null, voltage:null, weight:null,
+    rating:['BGV-C1'],
+    apps:['Touring','Themed','Permanent install','Performer-rated'],
+    detail:'TAIT NX scenic / performer winch line. Used for scenic flying and performer rigs. Capacity, speed and rating depend on configuration - replace this entry with the specific NX variant you use (e.g. NX-500, NX-1000).',
+    source:'TAIT product line; spec needs internal verification',
+    verify:false},
+
+  {id:'tait-stagedeck', brand:'TAIT Classic', cat:'tracking',
+    name:'TAIT StageDeck / Stage Lift',
+    blurb:'TAIT modular stage deck and lift systems (placeholder - verify model).',
+    capacity:null, speed:null, voltage:null, weight:null,
+    rating:['BGV-D8+','SIL3'],
+    apps:['Permanent install','Themed'],
+    detail:'TAIT modular stage deck and orchestra-lift solutions. Capacity, lift height and dual-channel safety depend on configuration - replace with the specific TAIT model you intend to use.',
+    source:'TAIT product line; spec needs internal verification',
+    verify:false}
 ];
 </script>
 
 <script>
-const STORE = 'taitEquipmentIndex.v1';
+const STORE = 'taitEquipmentIndex.v2';
 const state = (function(){
   let s = {};
   try { s = JSON.parse(localStorage.getItem(STORE) || '{}'); } catch(e){}
@@ -354,6 +496,7 @@ const state = (function(){
   s.q = s.q || '';
   s.minCap = +s.minCap || 0;
   s.minSpd = +s.minSpd || 0;
+  s.brand = s.brand || [];
   s.rating = s.rating || [];
   s.apps = s.apps || [];
   s.sort = s.sort || 'name';
@@ -371,14 +514,18 @@ function toast(msg){
   toast._t = setTimeout(()=>t.classList.remove('show'), 1800);
 }
 
-/* ---------- Nav ---------- */
+function brandSlug(b){ return b === 'Kinesys' ? 'kinesys' : (b === 'TAIT Classic' ? 'tait' : 'generic'); }
+
 function renderNav(){
   const nav = document.getElementById('nav');
   nav.innerHTML = '';
-  CATEGORIES.forEach((c,i)=>{
-    const count = c.id==='all' ? PRODUCTS.length
-      : c.id==='shortlist' ? state.shortlist.length
-      : PRODUCTS.filter(p=>p.cat===c.id).length;
+  CATEGORIES.forEach((c)=>{
+    let count;
+    if (c.id==='all') count = PRODUCTS.length;
+    else if (c.id==='shortlist') count = state.shortlist.length;
+    else if (c.id==='kinesys') count = PRODUCTS.filter(p=>p.brand==='Kinesys').length;
+    else if (c.id==='tait')    count = PRODUCTS.filter(p=>p.brand==='TAIT Classic').length;
+    else count = PRODUCTS.filter(p=>p.cat===c.id).length;
     const btn = document.createElement('button');
     btn.className = 'navbtn' + (state.cat===c.id ? ' active' : '');
     btn.innerHTML = '<span class="dot"></span><span class="label">'+c.label+'</span><span class="meta">'+(count||'')+'</span>';
@@ -387,7 +534,6 @@ function renderNav(){
   });
 }
 
-/* ---------- Chips ---------- */
 function renderChips(containerId, list, selected, onToggle){
   const el = document.getElementById(containerId);
   el.innerHTML = '';
@@ -400,31 +546,37 @@ function renderChips(containerId, list, selected, onToggle){
   });
 }
 
-/* ---------- Filters ---------- */
 function matches(p){
-  if (state.cat !== 'all' && state.cat !== 'shortlist' && p.cat !== state.cat) return false;
+  if (state.cat === 'kinesys' && p.brand !== 'Kinesys') return false;
+  if (state.cat === 'tait'    && p.brand !== 'TAIT Classic') return false;
   if (state.cat === 'shortlist' && !state.shortlist.includes(p.id)) return false;
+  if (state.cat !== 'all' && state.cat !== 'shortlist' && state.cat !== 'kinesys' && state.cat !== 'tait'){
+    if (p.cat !== state.cat) return false;
+  }
   if (state.view === 'shortlist' && !state.shortlist.includes(p.id)) return false;
   if (state.q) {
-    const hay = (p.name+' '+p.blurb+' '+(p.detail||'')+' '+p.rating.join(' ')+' '+p.apps.join(' ')).toLowerCase();
+    const hay = (p.name+' '+p.blurb+' '+(p.detail||'')+' '+p.rating.join(' ')+' '+p.apps.join(' ')+' '+p.brand).toLowerCase();
     if (!hay.includes(state.q.toLowerCase())) return false;
   }
-  if (state.minCap && p.capacity < state.minCap) return false;
-  if (state.minSpd && p.speed < state.minSpd) return false;
+  if (state.minCap && (!p.capacity || p.capacity < state.minCap)) return false;
+  if (state.minSpd && (!p.speed || p.speed < state.minSpd)) return false;
+  if (state.brand.length && !state.brand.includes(p.brand)) return false;
   if (state.rating.length && !state.rating.every(r => p.rating.includes(r))) return false;
   if (state.apps.length && !state.apps.every(a => p.apps.includes(a))) return false;
   return true;
 }
 function sortFn(a,b){
   switch(state.sort){
-    case 'cap-desc': return b.capacity - a.capacity;
-    case 'cap-asc' : return a.capacity - b.capacity;
-    case 'spd-desc': return b.speed - a.speed;
+    case 'cap-desc': return (b.capacity||0) - (a.capacity||0);
+    case 'cap-asc' : return (a.capacity||0) - (b.capacity||0);
+    case 'spd-desc': return (b.speed||0) - (a.speed||0);
     default: return a.name.localeCompare(b.name);
   }
 }
 
-/* ---------- Results ---------- */
+function fmtCap(v){ if(v===null) return 'varies'; if(!v) return '-'; return v+' kg'; }
+function fmtSpd(v){ if(v===null) return 'varies'; if(!v) return '-'; return v+' m/min'; }
+
 function renderResults(){
   const list = PRODUCTS.filter(matches).sort(sortFn);
   document.getElementById('resultCount').textContent = list.length;
@@ -434,17 +586,20 @@ function renderResults(){
   list.forEach(p=>{
     const card = document.createElement('article');
     card.className = 'card';
-    const catLabel = (CATEGORIES.find(c=>c.id===p.cat)||{label:p.cat}).label;
+    const catLabel = (CATEGORIES.find(c=>c.id===p.cat)||{label:p.cat}).label || p.cat;
+    const bSlug = brandSlug(p.brand);
     card.innerHTML =
+      '<span class="brand-pill '+bSlug+'">'+p.brand+'</span>'+
       '<div class="cat">'+catLabel+'</div>'+
       '<h3>'+p.name+'</h3>'+
       '<div class="blurb">'+p.blurb+'</div>'+
+      (p.verify===false ? '<div class="verify-flag">! Specs unverified - confirm from internal docs</div>' : '')+
       '<div class="specs">'+
-        '<div class="spec"><div class="k">Capacity</div><div class="v">'+(p.capacity? p.capacity+' kg':'-')+'</div></div>'+
-        '<div class="spec"><div class="k">Speed</div><div class="v">'+(p.speed? p.speed+' m/min':'-')+'</div></div>'+
-        '<div class="spec"><div class="k">Voltage</div><div class="v" style="font-size:13px">'+p.voltage+'</div></div>'+
+        '<div class="spec"><div class="k">Capacity</div><div class="v">'+fmtCap(p.capacity)+'</div></div>'+
+        '<div class="spec"><div class="k">Speed</div><div class="v">'+fmtSpd(p.speed)+'</div></div>'+
+        '<div class="spec"><div class="k">Voltage</div><div class="v" style="font-size:13px">'+(p.voltage||'-')+'</div></div>'+
       '</div>'+
-      '<div class="tags">'+p.rating.map(r=>'<span class="tag">'+r+'</span>').join('')+'</div>'+
+      (p.rating.length ? '<div class="tags">'+p.rating.map(r=>'<span class="tag">'+r+'</span>').join('')+'</div>' : '')+
       '<div class="cardfoot">'+
         '<button class="linklike" data-id="'+p.id+'" data-act="detail">View detail</button>'+
         '<button class="chip '+(state.shortlist.includes(p.id)?'active':'')+'" data-id="'+p.id+'" data-act="short">'+(state.shortlist.includes(p.id)?'On shortlist':'+ shortlist')+'</button>'+
@@ -455,26 +610,28 @@ function renderResults(){
   wrap.querySelectorAll('[data-act=short]').forEach(b=>b.onclick=()=>toggleShortlist(b.dataset.id));
 }
 
-/* ---------- Drawer ---------- */
 let drawerCurrent = null;
 function openDrawer(id){
   const p = PRODUCTS.find(x=>x.id===id);
   if(!p) return;
   drawerCurrent = p;
-  document.getElementById('dCat').textContent = (CATEGORIES.find(c=>c.id===p.cat)||{}).label || p.cat;
+  document.getElementById('dCat').textContent = ((CATEGORIES.find(c=>c.id===p.cat)||{}).label || p.cat) + ' · ' + p.brand;
   document.getElementById('dName').textContent = p.name;
   const body = document.getElementById('dBody');
   body.innerHTML =
     '<p style="color:var(--ink-soft);font-size:14.5px;margin:0 0 14px">'+p.blurb+'</p>'+
     '<p style="font-size:14px;margin:0 0 14px">'+(p.detail||'')+'</p>'+
+    (p.verify===false ? '<div class="verify-flag" style="margin:0 0 10px">! Specs unverified - confirm from internal TAIT documentation before use</div>' : '')+
     '<table class="specs-table">'+
-      '<tr><td>Capacity</td><td>'+(p.capacity? p.capacity+' kg':'-')+'</td></tr>'+
-      '<tr><td>Speed</td><td>'+(p.speed? p.speed+' m/min':'-')+'</td></tr>'+
-      '<tr><td>Voltage</td><td>'+p.voltage+'</td></tr>'+
-      '<tr><td>Unit weight</td><td>'+(p.weight? p.weight+' kg':'-')+'</td></tr>'+
-      '<tr><td>Rating</td><td>'+p.rating.join(', ')+'</td></tr>'+
+      '<tr><td>Brand</td><td>'+p.brand+'</td></tr>'+
+      '<tr><td>Capacity</td><td>'+fmtCap(p.capacity)+'</td></tr>'+
+      '<tr><td>Speed</td><td>'+fmtSpd(p.speed)+'</td></tr>'+
+      '<tr><td>Voltage</td><td>'+(p.voltage||'-')+'</td></tr>'+
+      '<tr><td>Unit weight</td><td>'+(p.weight ? p.weight+' kg' : 'n/a')+'</td></tr>'+
+      '<tr><td>Rating</td><td>'+(p.rating.length ? p.rating.join(', ') : '-')+'</td></tr>'+
       '<tr><td>Applications</td><td>'+p.apps.join(', ')+'</td></tr>'+
-    '</table>';
+    '</table>'+
+    (p.source ? '<div class="source-note"><b>Source:</b> '+p.source+'</div>' : '');
   document.getElementById('drawer').classList.add('open');
   document.getElementById('drawerBg').classList.add('open');
   document.getElementById('dShortBtn').textContent = state.shortlist.includes(p.id) ? 'Remove from shortlist' : 'Add to shortlist';
@@ -494,18 +651,17 @@ function toggleShortlist(id){
 }
 function toggleShortlistFromDrawer(){ if(drawerCurrent) toggleShortlist(drawerCurrent.id); }
 
-/* ---------- Actions ---------- */
 function copyProductSpec(){
   if(!drawerCurrent) return;
   const p = drawerCurrent;
-  const txt = [p.name, p.blurb, '',
-    'Capacity: '+(p.capacity? p.capacity+' kg':'-'),
-    'Speed: '+(p.speed? p.speed+' m/min':'-'),
-    'Voltage: '+p.voltage,
-    'Unit weight: '+(p.weight? p.weight+' kg':'-'),
-    'Rating: '+p.rating.join(', '),
+  const txt = [p.name+' ['+p.brand+']', p.blurb, '',
+    'Capacity: '+fmtCap(p.capacity),
+    'Speed: '+fmtSpd(p.speed),
+    'Voltage: '+(p.voltage||'-'),
+    'Rating: '+(p.rating.join(', ')||'-'),
     'Applications: '+p.apps.join(', '),
-    '', p.detail||''].join('\n');
+    '', p.detail||'',
+    p.source ? '\nSource: '+p.source : ''].join('\n');
   navigator.clipboard.writeText(txt).then(()=>toast('Spec copied'));
 }
 function copySummary(){
@@ -513,7 +669,7 @@ function copySummary(){
   const lines = ['TAIT Equipment Index - Shortlist',''];
   state.shortlist.forEach(id=>{
     const p = PRODUCTS.find(x=>x.id===id); if(!p) return;
-    lines.push('- '+p.name+' ('+p.rating.join('/')+') - '+(p.capacity? p.capacity+'kg':'-')+' @ '+(p.speed? p.speed+'m/min':'-'));
+    lines.push('- ['+p.brand+'] '+p.name+' ('+p.rating.join('/')+') - '+fmtCap(p.capacity)+' @ '+fmtSpd(p.speed));
   });
   navigator.clipboard.writeText(lines.join('\n')).then(()=>toast('Shortlist copied'));
 }
@@ -530,7 +686,7 @@ function togglePresent(){
   toast(state.present ? 'Presentation mode on' : 'Presentation mode off');
 }
 function resetFilters(){
-  state.q=''; state.minCap=0; state.minSpd=0; state.rating=[]; state.apps=[]; state.sort='name'; state.view='all';
+  state.q=''; state.minCap=0; state.minSpd=0; state.brand=[]; state.rating=[]; state.apps=[]; state.sort='name'; state.view='all';
   save(); renderAll(); document.getElementById('q').value='';
   document.getElementById('minCap').value=0; document.getElementById('minSpd').value=0;
   document.getElementById('minCapVal').textContent='0'; document.getElementById('minSpdVal').textContent='0';
@@ -538,19 +694,22 @@ function resetFilters(){
   toast('Filters reset');
 }
 
-/* ---------- Context ---------- */
 function renderContext(){
   const c = CATEGORIES.find(x=>x.id===state.cat) || CATEGORIES[0];
   document.getElementById('contextTitle').textContent = c.label;
-  document.getElementById('contextSub').textContent = c.id==='shortlist'
-    ? 'Compare, copy or export the units you are considering.'
-    : 'Filter by rating, capacity, speed and duty to shortlist the right unit.';
+  let sub = 'Filter by brand, rating, capacity, speed and duty.';
+  if (c.id==='kinesys') sub = 'Kinesys product range - verified specs from kinesys.com.';
+  else if (c.id==='tait') sub = 'TAIT Classic - product names verified, detailed specs flagged for internal verification.';
+  else if (c.id==='shortlist') sub = 'Compare, copy or export the units you are considering.';
+  document.getElementById('contextSub').textContent = sub;
 }
 
-/* ---------- Wire up ---------- */
 function renderAll(){
   renderNav();
   renderContext();
+  renderChips('brandChips', BRANDS, state.brand, v=>{
+    const i=state.brand.indexOf(v); if(i>=0) state.brand.splice(i,1); else state.brand.push(v); save(); renderAll();
+  });
   renderChips('ratingChips', RATINGS, state.rating, v=>{
     const i=state.rating.indexOf(v); if(i>=0) state.rating.splice(i,1); else state.rating.push(v); save(); renderAll();
   });
@@ -567,7 +726,6 @@ function init(){
   document.getElementById('sort').addEventListener('change', e=>{state.sort=e.target.value; save(); renderResults();});
   document.getElementById('view').addEventListener('change', e=>{state.view=e.target.value; save(); renderResults();});
   document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeDrawer(); });
-  // Restore controls
   document.getElementById('q').value = state.q;
   document.getElementById('minCap').value = state.minCap;
   document.getElementById('minSpd').value = state.minSpd;
