@@ -1,5 +1,5 @@
 {
-  "version": "v3",
+  "version": "v4",
   "generated": "2026-05-21",
   "categories": [
     {
@@ -176,7 +176,7 @@
       "name": "Kinesys Elevation Hoist 500",
       "blurb": "Variable speed converted Liftket, 500 kg.",
       "capacity": 500,
-      "speed": 18,
+      "speed": 12,
       "voltage": "208V / 400V",
       "weight": "38 kg",
       "rating": [
@@ -893,4 +893,4 @@
       "verify": false
     }
   ]
-    }
+}
