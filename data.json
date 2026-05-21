@@ -1,0 +1,896 @@
+{
+  "version": "v3",
+  "generated": "2026-05-21",
+  "categories": [
+    {
+      "id": "chain",
+      "label": "Chain hoists"
+    },
+    {
+      "id": "drive",
+      "label": "Drives & controllers"
+    },
+    {
+      "id": "control",
+      "label": "Control software"
+    },
+    {
+      "id": "tracking",
+      "label": "Tracking / DST"
+    },
+    {
+      "id": "loadcell",
+      "label": "Load cells"
+    },
+    {
+      "id": "power",
+      "label": "Power & distribution"
+    },
+    {
+      "id": "interface",
+      "label": "Interfaces & remotes"
+    }
+  ],
+  "brands": [
+    {
+      "id": "kinesys",
+      "label": "Kinesys"
+    },
+    {
+      "id": "tait",
+      "label": "TAIT Classic"
+    }
+  ],
+  "ratings": [
+    "BGV-D8",
+    "BGV-D8+",
+    "BGV-C1",
+    "SIL2",
+    "SIL3",
+    "DGUV 17",
+    "EN 17206",
+    "Performer-rated"
+  ],
+  "apps": [
+    "Touring",
+    "Themed",
+    "Broadcast",
+    "Permanent install",
+    "Variable-speed",
+    "Fixed-speed",
+    "Movement over people",
+    "Low-noise",
+    "3D motion",
+    "Load monitoring"
+  ],
+  "products": [
+    {
+      "id": "k-apex-500",
+      "brand": "kinesys",
+      "cat": "chain",
+      "name": "Kinesys Apex Hoist 500",
+      "blurb": "500 kg variable-speed hoist, 30 m/min, designed for movement over people.",
+      "capacity": 500,
+      "speed": 30,
+      "voltage": "400V 3ph",
+      "weight": "38 kg",
+      "rating": [
+        "BGV-D8+",
+        "DGUV 17",
+        "EN 17206"
+      ],
+      "apps": [
+        "Touring",
+        "Themed",
+        "Permanent install",
+        "Variable-speed",
+        "Movement over people",
+        "Low-noise"
+      ],
+      "detail": "Kinesys Apex Hoist 500 kg variable speed chain hoist, max speed 500 mm/s (30 m/min). Silent brakes, ability to hover. Compatible with Apex Drive v2 and Kinesys/TAIT control.",
+      "source": "https://kinesys.com/product/kinesys-apex-hoist/",
+      "verify": true
+    },
+    {
+      "id": "k-apex-500-servo",
+      "brand": "kinesys",
+      "cat": "chain",
+      "name": "Kinesys Apex Hoist 500 Servo",
+      "blurb": "500 kg servo-driven hoist, DGUV 17 / EN 17206, SIL3 load cell.",
+      "capacity": 500,
+      "speed": 30,
+      "voltage": "400V 3ph",
+      "weight": "42 kg",
+      "rating": [
+        "BGV-D8+",
+        "BGV-C1",
+        "DGUV 17",
+        "EN 17206",
+        "SIL3"
+      ],
+      "apps": [
+        "Touring",
+        "Themed",
+        "Permanent install",
+        "Variable-speed",
+        "Movement over people",
+        "Load monitoring"
+      ],
+      "detail": "Kinesys Apex Hoist 500 Servo - meets DGUV 17 (BGV C1) and EN 17206. Powered by Kinesys Apex Drive v2. Operates from Vector or TAIT Navigator. Integrated SIL3 load cell.",
+      "source": "https://kinesys.com/product/apexhoist-servo-500/",
+      "verify": true
+    },
+    {
+      "id": "k-apex-1250",
+      "brand": "kinesys",
+      "cat": "chain",
+      "name": "Kinesys Apex Hoist 1250",
+      "blurb": "1.25 t variable speed hoist, C1-rated, for performance flying and SOTA loads.",
+      "capacity": 1250,
+      "speed": 12,
+      "voltage": "400V 3ph",
+      "weight": "75 kg",
+      "rating": [
+        "BGV-C1",
+        "DGUV 17",
+        "EN 17206"
+      ],
+      "apps": [
+        "Touring",
+        "Themed",
+        "Permanent install",
+        "Variable-speed",
+        "Movement over people"
+      ],
+      "detail": "Kinesys Apex Hoist 1250 kg variable speed chain hoist, max speed 200 mm/s (12 m/min). C1-rated for movement over people. Silent brakes, hover capable.",
+      "source": "https://kinesys.com/product/kinesys-apex-hoist/",
+      "verify": true
+    },
+    {
+      "id": "k-elev-250",
+      "brand": "kinesys",
+      "cat": "chain",
+      "name": "Kinesys Elevation Hoist 250",
+      "blurb": "Variable speed converted Liftket, 250 kg.",
+      "capacity": 250,
+      "speed": 24,
+      "voltage": "208V / 400V",
+      "weight": "28 kg",
+      "rating": [
+        "BGV-D8",
+        "BGV-D8+"
+      ],
+      "apps": [
+        "Touring",
+        "Themed",
+        "Variable-speed"
+      ],
+      "detail": "Kinesys Elevation Hoist 250 kg variable speed Liftket / Stageket body. Updated with new latching chain hook and black chain, 24 m height of lift options.",
+      "source": "https://kinesys.com/product/kinesys-elevation-hoist/",
+      "verify": true
+    },
+    {
+      "id": "k-elev-500",
+      "brand": "kinesys",
+      "cat": "chain",
+      "name": "Kinesys Elevation Hoist 500",
+      "blurb": "Variable speed converted Liftket, 500 kg.",
+      "capacity": 500,
+      "speed": 18,
+      "voltage": "208V / 400V",
+      "weight": "38 kg",
+      "rating": [
+        "BGV-D8",
+        "BGV-D8+"
+      ],
+      "apps": [
+        "Touring",
+        "Themed",
+        "Variable-speed"
+      ],
+      "detail": "Kinesys Elevation Hoist 500 kg variable speed Liftket / Stageket body. Shares mechanical parts with the Apex Hoist 500. 24 m height of lift options.",
+      "source": "https://kinesys.com/product/kinesys-elevation-hoist/",
+      "verify": true
+    },
+    {
+      "id": "k-elev-1000",
+      "brand": "kinesys",
+      "cat": "chain",
+      "name": "Kinesys Elevation Hoist 1000",
+      "blurb": "Variable speed converted Liftket, 1000 kg.",
+      "capacity": 1000,
+      "speed": 12,
+      "voltage": "208V / 400V",
+      "weight": "68 kg",
+      "rating": [
+        "BGV-D8",
+        "BGV-C1"
+      ],
+      "apps": [
+        "Touring",
+        "Themed",
+        "Variable-speed",
+        "Movement over people"
+      ],
+      "detail": "Kinesys Elevation Hoist 1000 kg variable speed Liftket / Stageket body. Suitable for SOTA applications when paired with Mentor and Libra Cell.",
+      "source": "https://kinesys.com/product/kinesys-elevation-hoist/",
+      "verify": true
+    },
+    {
+      "id": "k-elev-lodestar",
+      "brand": "kinesys",
+      "cat": "chain",
+      "name": "Kinesys Elevation Hoist Lodestar",
+      "blurb": "Kinesys-converted CM Lodestar with Elevation1+ variable-speed control.",
+      "capacity": 1000,
+      "speed": 6,
+      "voltage": "208V / 400V",
+      "weight": "n/a",
+      "rating": [
+        "BGV-D8",
+        "BGV-D8+"
+      ],
+      "apps": [
+        "Touring",
+        "Themed",
+        "Variable-speed"
+      ],
+      "detail": "Kinesys converted Lodestar - combines CM Lodestar lifting mechanism with Elevation1+ control. Double brakes, limit switches, encoder. With Libra Cell can reach the most restrictive safety standards.",
+      "source": "https://kinesys.com/product/kinesys-elevation-hoist-lodestar/",
+      "verify": true
+    },
+    {
+      "id": "k-apex-drive-v2",
+      "brand": "kinesys",
+      "cat": "drive",
+      "name": "Kinesys Apex Drive v2",
+      "blurb": "SIL3 variable-speed drive for Apex hoist range, Kinesys and TAIT compatible.",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "400V 3ph",
+      "weight": "n/a",
+      "rating": [
+        "SIL3",
+        "DGUV 17",
+        "EN 17206"
+      ],
+      "apps": [
+        "Touring",
+        "Themed",
+        "Permanent install",
+        "Variable-speed"
+      ],
+      "detail": "State-of-the-art Apex Drive v2. Compliant with the latest safety directives. Compatible with both Kinesys and TAIT automation control. Works with all Kinesys Apex hoist models.",
+      "source": "https://kinesys.com/product/kinesys-apex-drive-v2/",
+      "verify": true
+    },
+    {
+      "id": "k-elev-drive-v2",
+      "brand": "kinesys",
+      "cat": "drive",
+      "name": "Kinesys Elevation Drive v2",
+      "blurb": "Flexible variable-speed open-system drive for Lodestar, Liftket and GIS hoists.",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "208V / 400V",
+      "weight": "n/a",
+      "rating": [
+        "BGV-D8",
+        "BGV-D8+"
+      ],
+      "apps": [
+        "Touring",
+        "Themed",
+        "Variable-speed"
+      ],
+      "detail": "Kinesys Elevation Drive v2 reduces cabling by supplying motors and controllers via single power and data cables. Works with Lodestar, Liftket and GIS chain hoists.",
+      "source": "https://kinesys.com/product/kinesys-elevation-drive-v2/",
+      "verify": true
+    },
+    {
+      "id": "k-digihoist",
+      "brand": "kinesys",
+      "cat": "drive",
+      "name": "Kinesys DigiHoist",
+      "blurb": "Compact digital chain-hoist controller with limit, load and position feedback.",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "32A / 63A",
+      "weight": "n/a",
+      "rating": [
+        "SIL2"
+      ],
+      "apps": [
+        "Touring",
+        "Themed",
+        "Fixed-speed",
+        "Load monitoring"
+      ],
+      "detail": "Digital communications, limit monitoring, load and position feedback and group halt functionality. Multiple units daisy-chained with automatic channel addressing.",
+      "source": "https://kinesys.com/product/kinesys-digihoist/",
+      "verify": true
+    },
+    {
+      "id": "k-vector-console",
+      "brand": "kinesys",
+      "cat": "control",
+      "name": "Kinesys Vector Console",
+      "blurb": "All-in-one cue-based console with built-in PC running Vector software.",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "110-240V AC",
+      "weight": "n/a",
+      "rating": [],
+      "apps": [
+        "Touring",
+        "Themed",
+        "Permanent install",
+        "3D motion"
+      ],
+      "detail": "All-in-one control solution with built-in dedicated PC running Vector software. Keypad mirrors familiar Kinesys layout.",
+      "source": "https://kinesys.com/product/vector-console/",
+      "verify": true
+    },
+    {
+      "id": "k-vector",
+      "brand": "kinesys",
+      "cat": "control",
+      "name": "Kinesys Vector Software",
+      "blurb": "Cue-based motion control software for Kinesys and TAIT hardware.",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "-",
+      "weight": "-",
+      "rating": [],
+      "apps": [
+        "Touring",
+        "Themed",
+        "Permanent install",
+        "3D motion"
+      ],
+      "detail": "Kinesys Vector allows cues to be built and run with a variety of linking options. Channels and cues limited only by your imagination. Advanced linking features for complex cue structures.",
+      "source": "https://kinesys.com/product/vector/",
+      "verify": true
+    },
+    {
+      "id": "k-mentor-s4",
+      "brand": "kinesys",
+      "cat": "control",
+      "name": "Kinesys Mentor Safety Series 4",
+      "blurb": "SIL3 safety controller, up to 60 devices over Ethernet.",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "-",
+      "weight": "-",
+      "rating": [
+        "SIL3"
+      ],
+      "apps": [
+        "Touring",
+        "Permanent install",
+        "Movement over people"
+      ],
+      "detail": "Mentor Series 4 - SIL3 safety over Ethernet, can communicate with and safely control up to 60 devices. E-stops and enable switches common across the Mentor range.",
+      "source": "https://kinesys.com/products/",
+      "verify": true
+    },
+    {
+      "id": "k-mentor-s3",
+      "brand": "kinesys",
+      "cat": "control",
+      "name": "Kinesys Mentor Safety Series 3",
+      "blurb": "Interface between Kinesys Elevation and DigiHoist emergency-stop systems.",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "-",
+      "weight": "-",
+      "rating": [
+        "SIL2"
+      ],
+      "apps": [
+        "Touring",
+        "Permanent install"
+      ],
+      "detail": "Mentor products provide the key interface between Kinesys product ranges, allowing E-stop systems built into Elevation and DigiHoist Ranges to work together.",
+      "source": "https://kinesys.com/product/kinesys-mentor-safety-series-3/",
+      "verify": true
+    },
+    {
+      "id": "k-libra-watch",
+      "brand": "kinesys",
+      "cat": "control",
+      "name": "Kinesys Libra Watch",
+      "blurb": "Multi-platform load monitoring app, tabular / graphical / plan view.",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "-",
+      "weight": "-",
+      "rating": [],
+      "apps": [
+        "Touring",
+        "Themed",
+        "Permanent install",
+        "Load monitoring"
+      ],
+      "detail": "Portable, user-friendly load monitoring software. Multi-platform - runs on any computer, tablet or smartphone. Tabular, graphical or plan view. Works with Libra Cell, Libra Pro and Libra WiFi.",
+      "source": "https://kinesys.com/product/kinesys-libra-watch/",
+      "verify": true
+    },
+    {
+      "id": "k-libra-view",
+      "brand": "kinesys",
+      "cat": "control",
+      "name": "Kinesys Libra View",
+      "blurb": "PC load monitoring software with logging and CSV export.",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "-",
+      "weight": "-",
+      "rating": [],
+      "apps": [
+        "Touring",
+        "Themed",
+        "Permanent install",
+        "Load monitoring"
+      ],
+      "detail": "Live readout of weights from Libra Cells with logging and archiving (kg or lbs). All activity can be logged and exported to CSV.",
+      "source": "https://kinesys.com/product/kinesys-libra-view/",
+      "verify": true
+    },
+    {
+      "id": "k-elev-trolley-dst",
+      "brand": "kinesys",
+      "cat": "tracking",
+      "name": "Kinesys Elevation Trolley DST",
+      "blurb": "Horizontal motorised trolley module for the Elevation DST stacking truss.",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "208V / 400V",
+      "weight": "n/a",
+      "rating": [
+        "BGV-D8"
+      ],
+      "apps": [
+        "Touring",
+        "Themed",
+        "3D motion"
+      ],
+      "detail": "Modular trolley system - motorized, slave and rotation trolleys. Compatible with Kinesys Elevation system via adapters and couplings. Variable speed.",
+      "source": "https://kinesys.com/product/kinesys-elevation-trolley-dst/",
+      "verify": true
+    },
+    {
+      "id": "k-elev-rotator-dst",
+      "brand": "kinesys",
+      "cat": "tracking",
+      "name": "Kinesys Elevation Rotator DST",
+      "blurb": "360 degree rotation module for the Elevation DST stacking truss.",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "208V / 400V",
+      "weight": "n/a",
+      "rating": [
+        "BGV-D8"
+      ],
+      "apps": [
+        "Touring",
+        "Themed",
+        "3D motion"
+      ],
+      "detail": "360 degree rotation module for the Kinesys Elevation DST system. Stacking truss compatible. Variable speed via Elevation drive.",
+      "source": "https://kinesys.com/product/kinesys-elevation-rotator-dst/",
+      "verify": true
+    },
+    {
+      "id": "k-elev-track-truss-dst",
+      "brand": "kinesys",
+      "cat": "tracking",
+      "name": "Kinesys Elevation Track Truss DST",
+      "blurb": "Custom-built stacking track truss for the Elevation DST modular trolley system.",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "-",
+      "weight": "n/a",
+      "rating": [
+        "BGV-D8"
+      ],
+      "apps": [
+        "Touring",
+        "Themed",
+        "3D motion"
+      ],
+      "detail": "Custom-built stacking track truss for the Elevation DST modular trolley system. Adapters and couplings link to the wider Elevation ecosystem.",
+      "source": "https://kinesys.com/product/kinesys-elevation-track-truss-dst/",
+      "verify": true
+    },
+    {
+      "id": "k-libra-cell",
+      "brand": "kinesys",
+      "cat": "loadcell",
+      "name": "Kinesys Libra Cell",
+      "blurb": "Load-measuring shackle for indoor use, Crosby-compatible shackle pin.",
+      "capacity": 4750,
+      "speed": 0,
+      "voltage": "-",
+      "weight": "n/a",
+      "rating": [],
+      "apps": [
+        "Touring",
+        "Themed",
+        "Permanent install",
+        "Load monitoring"
+      ],
+      "detail": "Load measuring shackle. Combined with the Kinesys Libra system produces accurate, real-time load info. Designed for indoor use (not waterproof). Libra shackle pin works with Crosby safety bow shackles (3.25TE / 4.75TE).",
+      "source": "https://kinesys.com/product/kinesys-libra-cell/",
+      "verify": true
+    },
+    {
+      "id": "k-libra-pro",
+      "brand": "kinesys",
+      "cat": "loadcell",
+      "name": "Kinesys Libra Pro",
+      "blurb": "Load-cell controller with 4x XLR4 outputs, up to 100 cells monitored.",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "-",
+      "weight": "n/a",
+      "rating": [],
+      "apps": [
+        "Touring",
+        "Themed",
+        "Permanent install",
+        "Load monitoring"
+      ],
+      "detail": "Four XLR4 outputs, up to 100 load cells monitored. Four programmable relay outputs and Ethernet connectivity. USB and Ethernet for integration.",
+      "source": "https://kinesys.com/product/kinesys-libra-pro/",
+      "verify": true
+    },
+    {
+      "id": "k-libra-basic",
+      "brand": "kinesys",
+      "cat": "loadcell",
+      "name": "Kinesys Libra Basic",
+      "blurb": "USB-connected entry-level Libra controller, up to 25 cells.",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "Universal PSU",
+      "weight": "n/a",
+      "rating": [],
+      "apps": [
+        "Permanent install",
+        "Load monitoring"
+      ],
+      "detail": "Works with Libra View software. USB socket for simple connection. External universal power supply. Powers up to 25 Libra Cells from a single XLR4.",
+      "source": "https://kinesys.com/product/kinesys-libra-basic/",
+      "verify": true
+    },
+    {
+      "id": "k-libra-wifi",
+      "brand": "kinesys",
+      "cat": "loadcell",
+      "name": "Kinesys Libra WiFi",
+      "blurb": "Wireless Libra access point with built-in firewall, mountable to truss.",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "-",
+      "weight": "n/a",
+      "rating": [],
+      "apps": [
+        "Touring",
+        "Themed",
+        "Load monitoring"
+      ],
+      "detail": "Wireless Libra access point - aerial mountable to any truss. Built-in firewall permits only Kinesys data. Works with all Kinesys systems. Kinesys recommends wired networks during performance.",
+      "source": "https://kinesys.com/product/kinesys-libra-wifi/",
+      "verify": true
+    },
+    {
+      "id": "k-libra-split",
+      "brand": "kinesys",
+      "cat": "loadcell",
+      "name": "Kinesys Libra Split",
+      "blurb": "Distribution unit connecting multiple Libra Cells to a single Libra Pro / Basic / DigiHoist port.",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "Low-voltage DC",
+      "weight": "n/a",
+      "rating": [],
+      "apps": [
+        "Permanent install",
+        "Load monitoring"
+      ],
+      "detail": "Flexible connection of multiple Libra Cells to a single data connector on Libra Pro, Libra Basic and DigiHoist. Robust extruded aluminium case, low-voltage DC power.",
+      "source": "https://kinesys.com/product/kinesys-libra-split/",
+      "verify": true
+    },
+    {
+      "id": "k-libra-rig",
+      "brand": "kinesys",
+      "cat": "loadcell",
+      "name": "Kinesys Libra Rig",
+      "blurb": "Lifting accessory linking 4.75TE Libra Cell to a 3.25 standard bow shackle.",
+      "capacity": 3250,
+      "speed": 0,
+      "voltage": "-",
+      "weight": "n/a",
+      "rating": [],
+      "apps": [
+        "Touring",
+        "Themed",
+        "Load monitoring"
+      ],
+      "detail": "Lifting accessory connecting a 4.75TE Libra Cell shackle to a 3.25 standard bow shackle. Cells stay assembled during load in/out. Saves hook height vs an O-ring.",
+      "source": "https://kinesys.com/product/kinesys-libra-rig/",
+      "verify": true
+    },
+    {
+      "id": "k-libra-node",
+      "brand": "kinesys",
+      "cat": "loadcell",
+      "name": "Kinesys Libra Node",
+      "blurb": "OEM module that bridges 3rd-party 0-10V / 4-20mA / strain-gauge sensors to Libra.",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "-",
+      "weight": "n/a",
+      "rating": [],
+      "apps": [
+        "Permanent install",
+        "Load monitoring"
+      ],
+      "detail": "Connects 3rd-party load sensors to the Libra Range. Reads 0-10V, 4-20mA and strain-gauge inputs. Designed for OEMs. Outputs for driving LEDs.",
+      "source": "https://kinesys.com/product/kinesys-libra-node/",
+      "verify": true
+    },
+    {
+      "id": "k-array-pdes",
+      "brand": "kinesys",
+      "cat": "power",
+      "name": "Kinesys Array PD-ES",
+      "blurb": "6U 19in rack, 125A E-stop switched power, four 32A 3ph Ceeform outlets.",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "400V 3ph",
+      "weight": "n/a",
+      "rating": [],
+      "apps": [
+        "Touring",
+        "Permanent install"
+      ],
+      "detail": "6U 19in rack module - 125A E-stop switched power through four 32A three-phase Ceeform outlets. Adjustable RCD per outlet. Single-phase auxiliary. Dual XLR7 data outputs. Transform 485 functionality.",
+      "source": "https://kinesys.com/products/",
+      "verify": true
+    },
+    {
+      "id": "k-array-pdes-mini",
+      "brand": "kinesys",
+      "cat": "power",
+      "name": "Kinesys Array PD-ES Mini",
+      "blurb": "32A E-stop switched power, two 32A 3ph Ceeform outlets, with Transform 485.",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "400V 3ph",
+      "weight": "n/a",
+      "rating": [],
+      "apps": [
+        "Touring",
+        "Permanent install"
+      ],
+      "detail": "32A E-stop switched power through two 32A three-phase Ceeform outlets. Single-phase auxiliary outlet. Adjustable RCD. Includes Transform 485 between Vector and Elevation.",
+      "source": "https://kinesys.com/products/",
+      "verify": true
+    },
+    {
+      "id": "k-array-ip8",
+      "brand": "kinesys",
+      "cat": "power",
+      "name": "Kinesys Array IP8",
+      "blurb": "Rugged 8-port 10/100 Ethernet switch with Ethercon connectors.",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "-",
+      "weight": "n/a",
+      "rating": [],
+      "apps": [
+        "Touring",
+        "Permanent install"
+      ],
+      "detail": "Rugged 8 port 10/100 Ethernet switch designed to work with Kinesys products. Ethercon connectors on the rear for 8 x RJ45 (standard RJ-45 also accepted). Power and per-channel activity LEDs.",
+      "source": "https://kinesys.com/products/",
+      "verify": true
+    },
+    {
+      "id": "k-array-485",
+      "brand": "kinesys",
+      "cat": "interface",
+      "name": "Kinesys Array 485",
+      "blurb": "1-in-8-out RS485 distribution unit for Elevation v2.",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "-",
+      "weight": "n/a",
+      "rating": [],
+      "apps": [
+        "Touring",
+        "Permanent install"
+      ],
+      "detail": "1 in 8 out RS485 distribution for Elevation v2. Rear: 1 in / 8 out XLR7. Front: link, data and E-stop status indicators plus a Rigger remote socket for local hoist control.",
+      "source": "https://kinesys.com/products/",
+      "verify": true
+    },
+    {
+      "id": "k-transform-485",
+      "brand": "kinesys",
+      "cat": "interface",
+      "name": "Kinesys Transform 485",
+      "blurb": "Protocol bridge between Vector/K2 Ethernet and Elevation RS485 (XLR7).",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "-",
+      "weight": "n/a",
+      "rating": [],
+      "apps": [
+        "Touring",
+        "Permanent install"
+      ],
+      "detail": "Translates between native Ethernet from Vector/K2 controllers and the RS485 bus on the Elevation range (XLR7). Built-in E-stop button for instant network E-stop.",
+      "source": "https://kinesys.com/product/kinesys-transform-485/",
+      "verify": true
+    },
+    {
+      "id": "k-digihandset",
+      "brand": "kinesys",
+      "cat": "interface",
+      "name": "Kinesys DigiHandset",
+      "blurb": "DigiHoist handset: channel select, E-STOP, GO and RESET.",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "-",
+      "weight": "n/a",
+      "rating": [],
+      "apps": [
+        "Touring",
+        "Themed",
+        "Fixed-speed"
+      ],
+      "detail": "DigiHandset with channel selection, Emergency STOP, GO and RESET. Auto-addresses on plug-in. Blue indicator per channel when a hoist is connected and ready.",
+      "source": "https://kinesys.com/product/kinesys-digihandset/",
+      "verify": true
+    },
+    {
+      "id": "k-digilink",
+      "brand": "kinesys",
+      "cat": "interface",
+      "name": "Kinesys DigiLink",
+      "blurb": "Links up to four DigiHandsets - one GO button controls up to 96 hoists.",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "-",
+      "weight": "n/a",
+      "rating": [],
+      "apps": [
+        "Touring",
+        "Themed",
+        "Fixed-speed"
+      ],
+      "detail": "Connects up to four DigiHandsets so a single handset GO button can control up to 96 hoists. Useful for systems greater than 32 channels.",
+      "source": "https://kinesys.com/product/kinesys-digilink/",
+      "verify": true
+    },
+    {
+      "id": "k-elev-rigger",
+      "brand": "kinesys",
+      "cat": "interface",
+      "name": "Kinesys Elevation Rigger",
+      "blurb": "Industry-standard hand-held controller for Elevation 1+ variable-speed hoists.",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "-",
+      "weight": "n/a",
+      "rating": [],
+      "apps": [
+        "Touring",
+        "Themed",
+        "Variable-speed"
+      ],
+      "detail": "Hand-held Rigger remote - minimal training required. Operates variable speed chain hoists alongside or in place of a Vector control system. Uses the Elevation 1+ menu system.",
+      "source": "https://kinesys.com/products/",
+      "verify": true
+    },
+    {
+      "id": "t-navigator",
+      "brand": "tait",
+      "cat": "control",
+      "name": "TAIT Navigator",
+      "blurb": "TAIT's flagship cue-based automation control platform.",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "-",
+      "weight": "n/a",
+      "rating": [
+        "SIL3"
+      ],
+      "apps": [
+        "Touring",
+        "Themed",
+        "Permanent install",
+        "3D motion"
+      ],
+      "detail": "TAIT Navigator multi-axis automation control. Cue-based, scalable to large permanent installations. Compatible with Kinesys Apex Hoist 500/1250/500 Servo and Apex Drive v2 (confirmed by Kinesys product pages). Pairs with Acrobat module for performer flying.",
+      "source": "Referenced as compatible control on kinesys.com Apex pages",
+      "verify": false
+    },
+    {
+      "id": "t-acrobat",
+      "brand": "tait",
+      "cat": "control",
+      "name": "TAIT Acrobat",
+      "blurb": "Performer flying control module for the Navigator platform.",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "-",
+      "weight": "n/a",
+      "rating": [
+        "BGV-C1",
+        "SIL3",
+        "Performer-rated"
+      ],
+      "apps": [
+        "Touring",
+        "Themed",
+        "Permanent install",
+        "3D motion",
+        "Movement over people"
+      ],
+      "detail": "TAIT Acrobat - performer flying module integrated with Navigator. Used on large arena and stadium tours. Specs to be confirmed against internal TAIT documentation.",
+      "source": "Referenced as compatible control on kinesys.com Apex pages",
+      "verify": false
+    },
+    {
+      "id": "t-nx-winch",
+      "brand": "tait",
+      "cat": "chain",
+      "name": "TAIT NX Winch",
+      "blurb": "TAIT scenic / performer winch family (placeholder - verify model and spec).",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "-",
+      "weight": "n/a",
+      "rating": [
+        "BGV-C1"
+      ],
+      "apps": [
+        "Touring",
+        "Themed",
+        "Permanent install",
+        "Variable-speed"
+      ],
+      "detail": "TAIT NX Winch placeholder - verify exact model variants (NX-1000, NX-2000 etc), capacity and speed from internal TAIT documentation.",
+      "source": "placeholder",
+      "verify": false
+    },
+    {
+      "id": "t-stagedeck",
+      "brand": "tait",
+      "cat": "tracking",
+      "name": "TAIT StageDeck / Stage Lift",
+      "blurb": "TAIT modular stage deck and lift systems (placeholder - verify model).",
+      "capacity": 0,
+      "speed": 0,
+      "voltage": "-",
+      "weight": "n/a",
+      "rating": [
+        "BGV-D8+",
+        "SIL3"
+      ],
+      "apps": [
+        "Touring",
+        "Themed",
+        "Permanent install"
+      ],
+      "detail": "TAIT StageDeck / Stage Lift placeholder - confirm exact product family and rated loads/speeds from internal TAIT documentation before quoting.",
+      "source": "placeholder",
+      "verify": false
+    }
+  ]
+    }
