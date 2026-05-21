@@ -257,6 +257,8 @@ const CATEGORIES = [
   {id:'control',   label:'Control software',      meta:''},
   {id:'tracking',  label:'Tracking / DST',        meta:''},
   {id:'loadcell',  label:'Load cells',            meta:''},
+  {id:'power',      label:'Power & distribution',  meta:''},
+  {id:'interface',  label:'Interfaces & remotes',  meta:''},
   {id:'shortlist', label:'My shortlist',          meta:''}
 ];
 
@@ -267,228 +269,44 @@ const APPS    = ['Touring','Themed','Broadcast','Permanent install','Variable-sp
 /* ============================================================
    KINESYS  -  Verified from kinesys.com product pages (2026)
    ============================================================ */
-const PRODUCTS = [
+let PRODUCTS = []; // populated by fetch from data.json
 
-  {id:'kin-apex-500', brand:'Kinesys', cat:'chain',
-    name:'Kinesys Apex Hoist 500',
-    blurb:'Variable speed electric chain hoist, 500 kg, suitable for movement over people.',
-    capacity:500, speed:30, voltage:'400V 3ph (200/400V variants)', weight:null,
-    rating:['BGV-C1','DGUV 17','EN 17206'],
-    apps:['Touring','Themed','Movement over people','Variable-speed','Low-noise'],
-    detail:'500 kg / 1200 lb capacity, max speed 500 mm/s (30 m/min, 100 ft/min). Completely silent dual brakes with hover capability. Intelligent Duty Cycle Management, real-time temperature monitoring, full usage logging. Compatible with all Kinesys and TAIT control platforms.',
-    source:'kinesys.com/product/kinesys-apex-hoist/',
-    verify:true},
+// Map raw catalogue entries (data.json shape) into the UI shape used by render code.
+function _normalizeProduct(p){
+  const brandLabel = p.brand === "kinesys" ? "Kinesys" : (p.brand === "tait" ? "TAIT Classic" : (p.brand || ""));
+  return {
+    id: p.id,
+    brand: brandLabel,
+    cat: p.cat,
+    name: p.name,
+    blurb: p.blurb || "",
+    capacity: (p.capacity===0||p.capacity) ? p.capacity : null,
+    speed: (p.speed===0||p.speed) ? p.speed : null,
+    voltage: p.voltage || "-",
+    weight: (p.weight && p.weight !== "n/a") ? p.weight : null,
+    rating: Array.isArray(p.rating) ? p.rating : [],
+    apps: Array.isArray(p.apps) ? p.apps : [],
+    detail: p.detail || "",
+    source: p.source || "",
+    verify: p.verify !== false
+  };
+}
 
-  {id:'kin-apex-500-servo', brand:'Kinesys', cat:'chain',
-    name:'Kinesys Apex Hoist 500 Servo',
-    blurb:'Servo variant of the Apex 500 with integrated SIL3 load cell.',
-    capacity:500, speed:30, voltage:'400V 3ph', weight:null,
-    rating:['BGV-C1','DGUV 17','EN 17206','SIL3'],
-    apps:['Touring','Themed','Movement over people','Variable-speed','3D motion','Load monitoring','Low-noise'],
-    detail:'Variable speed electric chain hoist designed to meet DGUV 17 (BGV C1) and EN 17206. Integrated SIL3 load cell, dual quiet brakes with brake monitoring, SSI absolute encoder. Powered by Kinesys Apex Drive v2. Operated by Kinesys Vector or TAIT Navigator.',
-    source:'kinesys.com/product/apexhoist-servo-500/',
-    verify:true},
-
-  {id:'kin-apex-1250', brand:'Kinesys', cat:'chain',
-    name:'Kinesys Apex Hoist 1250',
-    blurb:'1.25 t variable speed hoist, C1-rated, for performance flying and SOTA loads.',
-    capacity:1250, speed:12, voltage:'400V 3ph', weight:null,
-    rating:['BGV-C1','DGUV 17','EN 17206'],
-    apps:['Touring','Themed','Permanent install','Movement over people','Variable-speed','Low-noise'],
-    detail:'1250 kg / 2750 lb capacity, max speed 200 mm/s (12 m/min, 40 ft/min). Silent dual brakes, hover capability. Intelligent Duty Cycle Management. Compatible with all Kinesys and TAIT control.',
-    source:'kinesys.com/product/kinesys-apex-hoist/',
-    verify:true},
-
-  {id:'kin-apex-drive-v2', brand:'Kinesys', cat:'drive',
-    name:'Kinesys Apex Drive v2',
-    blurb:'SIL3-rated variable speed drive for the Apex hoist range.',
-    capacity:0, speed:0, voltage:'400V 3ph (Ceeform)', weight:null,
-    rating:['BGV-C1','DGUV 17','EN 17206','SIL3'],
-    apps:['Touring','Themed','Permanent install','Variable-speed','3D motion'],
-    detail:'State-of-the-art variable speed chain hoist drive. Compatible with all Kinesys Apex hoists. Touchscreen display, manual front panel controls, real-time data logging. True zero speed (zero-speed load holding with open brakes). SIL3 rated. Ceeform daisy-chain power. Works with Kinesys Vector and TAIT Navigator.',
-    source:'kinesys.com/product/kinesys-apex-drive-v2/',
-    verify:true},
-
-  {id:'kin-elev-hoist-250', brand:'Kinesys', cat:'chain',
-    name:'Kinesys Elevation Hoist 250',
-    blurb:'Variable speed converted Liftket, 250 kg.',
-    capacity:250, speed:24, voltage:'208V / 400V', weight:null,
-    rating:['BGV-D8','BGV-C1'],
-    apps:['Touring','Themed','Variable-speed'],
-    detail:'250 kg Stageket-body chain hoist, double brakes, four-position limit switches, encoder. With Kinesys LibraCELL can reach BGV-C1 conformity. Available in 208V and 400V. 24m height of lift standard. Speed up to 24 m/min depending on configuration.',
-    source:'kinesys.com/product/kinesys-elevation-hoist/',
-    verify:true},
-
-  {id:'kin-elev-hoist-500', brand:'Kinesys', cat:'chain',
-    name:'Kinesys Elevation Hoist 500',
-    blurb:'Variable speed converted Liftket, 500 kg.',
-    capacity:500, speed:12, voltage:'208V / 400V', weight:null,
-    rating:['BGV-D8','BGV-C1'],
-    apps:['Touring','Themed','Variable-speed'],
-    detail:'500 kg Stageket-body chain hoist, double brakes, four-position limit switches, encoder. Shares mechanical parts with Apex 500. With LibraCELL reaches BGV-C1. 24 m HoL.',
-    source:'kinesys.com/product/kinesys-elevation-hoist/',
-    verify:true},
-
-  {id:'kin-elev-hoist-1000', brand:'Kinesys', cat:'chain',
-    name:'Kinesys Elevation Hoist 1000',
-    blurb:'Variable speed converted Liftket, 1000 kg.',
-    capacity:1000, speed:12, voltage:'208V / 400V', weight:null,
-    rating:['BGV-D8','BGV-C1'],
-    apps:['Touring','Themed','Variable-speed'],
-    detail:'1000 kg Stageket-body chain hoist, double brakes, four-position limit switches, encoder. With LibraCELL reaches BGV-C1.',
-    source:'kinesys.com/product/kinesys-elevation-hoist/',
-    verify:true},
-
-  {id:'kin-elev-drive-v2', brand:'Kinesys', cat:'drive',
-    name:'Kinesys Elevation Drive v2',
-    blurb:'Open-system variable speed drive for Lodestar / Liftket / GIS hoists.',
-    capacity:0, speed:0, voltage:'32A US/EU variants', weight:null,
-    rating:['BGV-D8'],
-    apps:['Touring','Themed','Permanent install','Variable-speed'],
-    detail:'Variable speed drive for converted CM Lodestar, Liftket, GIS chain hoists. 32A daisy-chain power. LED display, intuitive menu, manual control buttons. Ramp start/stop, position and variable speed. Multipin hoist connection (motor, brake, limit switch, encoder). Controlled by Kinesys Vector.',
-    source:'kinesys.com/product/kinesys-elevation-drive-v2/',
-    verify:true},
-
-  {id:'kin-digihoist', brand:'Kinesys', cat:'drive',
-    name:'Kinesys DigiHoist',
-    blurb:'Digital fixed-speed hoist controller, 32A / 63A, SIL2 e-stop.',
-    capacity:0, speed:0, voltage:'32A / 63A 3ph', weight:null,
-    rating:['SIL2'],
-    apps:['Touring','Themed','Permanent install','Fixed-speed','Load monitoring'],
-    detail:'Digital comms hoist controller. Up to 12 units (96 channels) daisy-chained. SIL2 emergency stop. Load cell input, limit monitoring, position feedback, group halt. 32A DigiHoist and 63A DigiHoist PLUS. Connections: Socapex / Harting / P14 / Ceeform.',
-    source:'kinesys.com/product/kinesys-digihoist/',
-    verify:true},
-
-  {id:'kin-libra-cell', brand:'Kinesys', cat:'loadcell',
-    name:'Kinesys Libra Cell',
-    blurb:'Load measuring shackle (Crosby bow pin replacement) with on-board readout.',
-    capacity:4750, speed:0, voltage:'-', weight:null,
-    rating:[],
-    apps:['Load monitoring','Touring','Themed','Permanent install'],
-    detail:'Load-measuring shackle pin, direct replacement for Crosby red pin. Available in 3.25 TE (5/8") and 4.75 TE (3/4") capacities at 5:1 SF (1.62 T / 2.37 T at 10:1 SF). LED readout in kg or lbs with tare. Designed for indoor use (not waterproof).',
-    source:'kinesys.com/product/kinesys-libra-cell/',
-    verify:true},
-
-  {id:'kin-libra-pro', brand:'Kinesys', cat:'loadcell',
-    name:'Kinesys Libra Pro',
-    blurb:'Load cell hub: up to 100 cells, 4x XLR4, 4x relay, Ethernet.',
-    capacity:0, speed:0, voltage:'External PSU', weight:null,
-    rating:[],
-    apps:['Load monitoring','Permanent install','Touring','Themed'],
-    detail:'Four XLR4 inputs supporting up to 100 Libra Cells. Four programmable relay outputs (for under/overload alarms). Ethernet and USB. Connects to Libra Watch on PC, tablet or smartphone. Pairs with Libra WiFi for wireless monitoring.',
-    source:'kinesys.com/product/kinesys-libra-pro/',
-    verify:true},
-
-  {id:'kin-vector-console', brand:'Kinesys', cat:'control',
-    name:'Kinesys Vector Console',
-    blurb:'All-in-one cue-based motion control console with built-in PC and 15.6" touchscreen.',
-    capacity:0, speed:0, voltage:'-', weight:null,
-    rating:[],
-    apps:['Touring','Themed','Permanent install','3D motion'],
-    detail:'15.6" backlit capacitive touchscreen, jog wheels, joystick, dedicated start/stop, original Vector keypad, dimmable backlit keyboard + trackpad. RFID login, integrated E-stop and DMH, dedicated media network output, 2x external monitor (HDMI/VGA), 2x USB. Runs full Kinesys Vector software.',
-    source:'kinesys.com/product/vector-console/',
-    verify:true},
-
-  {id:'kin-vector-sw', brand:'Kinesys', cat:'control',
-    name:'Kinesys Vector Software',
-    blurb:'Cue-based automation software with unlimited cues and channels.',
-    capacity:0, speed:0, voltage:'-', weight:null,
-    rating:[],
-    apps:['Touring','Themed','Permanent install','3D motion'],
-    detail:'Cue-based programming software for Kinesys controllers. 4 simultaneous playbacks, advanced cue linking, dead-man\'s handle per channel, group halt, error windowing. Three user-login levels. Free demo (no motion output).',
-    source:'kinesys.com/product/vector-console/',
-    verify:true},
-
-  {id:'kin-mentor-s4', brand:'Kinesys', cat:'control',
-    name:'Kinesys Mentor Safety Series 4',
-    blurb:'SIL3 safety controller over Ethernet, up to 60 devices.',
-    capacity:0, speed:0, voltage:'-', weight:null,
-    rating:['SIL3'],
-    apps:['Touring','Themed','Permanent install','3D motion'],
-    detail:'Series 4 Mentor safety controller. SIL3 over Ethernet, up to 60 safely controlled devices. Compatible E-stops and dead-man\'s handles shared across Mentor range. Latest generation Kinesys safety platform.',
-    source:'kinesys.com/products/ (Mentor Series 4 listing)',
-    verify:true},
-
-  {id:'kin-elev-trolley-dst', brand:'Kinesys', cat:'tracking',
-    name:'Kinesys Elevation Trolley DST',
-    blurb:'Motorised horizontal trolley for Elevation DST track-truss.',
-    capacity:null, speed:null, voltage:'200V / 400V', weight:null,
-    rating:['BGV-D8'],
-    apps:['Themed','Permanent install','Touring','Variable-speed','3D motion'],
-    detail:'Horizontal traverse module for the Elevation DST stacking track-truss system. Onboard control box and Elevation controller. Onboard limit and homing switches. Power/data output for additional Elevation devices. Lead/follow trolleys available for larger screens / props.',
-    source:'kinesys.com/product/kinesys-elevation-trolley-dst/',
-    verify:true},
-
-  {id:'kin-elev-rotator-dst', brand:'Kinesys', cat:'tracking',
-    name:'Kinesys Elevation Rotator DST',
-    blurb:'360-degree rotation module for the DST track-truss.',
-    capacity:null, speed:null, voltage:'200V / 400V', weight:null,
-    rating:['BGV-D8'],
-    apps:['Themed','Permanent install','Variable-speed','3D motion'],
-    detail:'360-degree rotation module for video screens, scenery, props. Combines with Trolley DST for multi-axis motion. Onboard control box and Elevation controller, limit and homing switches.',
-    source:'kinesys.com/product/kinesys-elevation-rotator-dst/',
-    verify:true},
-
-  {id:'kin-elev-truss-dst', brand:'Kinesys', cat:'tracking',
-    name:'Kinesys Elevation Track Truss DST',
-    blurb:'EN AW-6062 T6 aluminium track-truss with integrated toothed belt.',
-    capacity:0, speed:0, voltage:'-', weight:null,
-    rating:[],
-    apps:['Themed','Permanent install','Touring'],
-    detail:'EN AW-6062 T6 aluminium truss with integrated toothed belt track. Straight sections 1 m / 1.5 m / 3 m. 3 m curved sections available. Optional black powder coat. Truss structure manufactured by Area 4. Integrated dolly option for fast load-in/out.',
-    source:'kinesys.com/product/kinesys-elevation-track-truss-dst/',
-    verify:true},
-
-  /* ============================================================
-     TAIT CLASSIC  -  Product names verified (referenced on
-     kinesys.com), but detailed specs need verification from
-     internal TAIT documentation. Flagged verify:false.
-     ============================================================ */
-
-  {id:'tait-navigator', brand:'TAIT Classic', cat:'control',
-    name:'TAIT Navigator',
-    blurb:'TAIT\'s flagship cue-based automation control platform.',
-    capacity:0, speed:0, voltage:'-', weight:null,
-    rating:['SIL3'],
-    apps:['Touring','Themed','Permanent install','3D motion'],
-    detail:'TAIT Navigator multi-axis automation control. Cue-based, scalable to large permanent installations. Compatible with Kinesys Apex Hoist 500/1250/500 Servo and Apex Drive v2 (confirmed by Kinesys product pages). Pairs with Acrobat module for performer flying.',
-    source:'Referenced as compatible control on kinesys.com Apex pages',
-    verify:false},
-
-  {id:'tait-acrobat', brand:'TAIT Classic', cat:'control',
-    name:'TAIT Acrobat',
-    blurb:'Performer flying control module for the Navigator platform.',
-    capacity:0, speed:0, voltage:'-', weight:null,
-    rating:['BGV-C1','SIL3','Performer-rated'],
-    apps:['Touring','Themed','Permanent install','3D motion','Movement over people'],
-    detail:'Specialist performer-flying controller running on top of Navigator. Redundant safety processing, force monitoring, dead-man operator station. Used on large-scale tours and resident shows.',
-    source:'TAIT product line; spec needs internal verification',
-    verify:false},
-
-  {id:'tait-nx-winch', brand:'TAIT Classic', cat:'chain',
-    name:'TAIT NX Winch',
-    blurb:'TAIT scenic / performer winch family (placeholder - verify model and spec).',
-    capacity:null, speed:null, voltage:null, weight:null,
-    rating:['BGV-C1'],
-    apps:['Touring','Themed','Permanent install','Performer-rated'],
-    detail:'TAIT NX scenic / performer winch line. Used for scenic flying and performer rigs. Capacity, speed and rating depend on configuration - replace this entry with the specific NX variant you use (e.g. NX-500, NX-1000).',
-    source:'TAIT product line; spec needs internal verification',
-    verify:false},
-
-  {id:'tait-stagedeck', brand:'TAIT Classic', cat:'tracking',
-    name:'TAIT StageDeck / Stage Lift',
-    blurb:'TAIT modular stage deck and lift systems (placeholder - verify model).',
-    capacity:null, speed:null, voltage:null, weight:null,
-    rating:['BGV-D8+','SIL3'],
-    apps:['Permanent install','Themed'],
-    detail:'TAIT modular stage deck and orchestra-lift solutions. Capacity, lift height and dual-channel safety depend on configuration - replace with the specific TAIT model you intend to use.',
-    source:'TAIT product line; spec needs internal verification',
-    verify:false}
-];
+async function loadCatalogue(){
+  try {
+    const r = await fetch("data.json", {cache:"no-store"});
+    if(!r.ok) throw new Error("HTTP "+r.status);
+    const j = await r.json();
+    PRODUCTS = (j.products || []).map(_normalizeProduct);
+  } catch(e){
+    console.error("Failed to load data.json:", e);
+    PRODUCTS = [];
+  }
+}
 </script>
 
 <script>
-const STORE = 'taitEquipmentIndex.v2';
+const STORE = 'taitEquipmentIndex.v3';
 const state = (function(){
   let s = {};
   try { s = JSON.parse(localStorage.getItem(STORE) || '{}'); } catch(e){}
@@ -719,7 +537,8 @@ function renderAll(){
   renderResults();
 }
 
-function init(){
+async function init(){
+  await loadCatalogue();
   document.getElementById('q').addEventListener('input', e=>{state.q=e.target.value; save(); renderResults();});
   document.getElementById('minCap').addEventListener('input', e=>{state.minCap=+e.target.value; document.getElementById('minCapVal').textContent=e.target.value; save(); renderResults();});
   document.getElementById('minSpd').addEventListener('input', e=>{state.minSpd=+e.target.value; document.getElementById('minSpdVal').textContent=e.target.value; save(); renderResults();});
